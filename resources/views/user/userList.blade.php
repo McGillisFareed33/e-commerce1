@@ -27,10 +27,18 @@
                 <td>2024-01-01</td>
                 <td>2024-01-02</td>
                 <td>
+                    
                     <div class="action-buttons">
-                        <button class="edit-button">Düzenle</button>
-                        <button class="delete-button">Sil</button>
+                    <form method="post" action="{{route('kullanici.duzenleme')}}">
+                        @csrf
+                        <button class="edit-button" >Düzenle</button>
+                    </form>
+                    <form method="post" action="{{route('kullanici.silme')}}">
+                        @csrf
+                        <button class="delete-button" >Sil</button>
+                    </form>
                     </div>
+                
                 </td>
             </tr>
             <!-- Daha fazla satır ekleyebilirsiniz -->

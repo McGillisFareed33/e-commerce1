@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,12 +13,16 @@ Route::post('/', [LoginController::class, 'login'])->name('login.validate');
 
 Route::get('/template', [PagesController::class, 'templatecheck']);
 
-Route::get('/userlist', [PagesController::class, 'Userlist'])->name('kullanici.listesi');
-Route::get('/useradd', [PagesController::class, 'Useradd'])->name('kullanici.ekleme');
+Route::get('/user/list', [UsersController::class, 'Userlist'])->name('kullanici.listesi');
+Route::get('/user/add', [UsersController::class, 'Useradd'])->name('kullanici.ekleme');
+Route::post('/user/adj', [UsersController::class, 'Useradj'])->name('kullanici.duzenleme');
+Route::post('/user/del', [UsersController::class, 'Userdel'])->name('kullanici.silme');
 
-Route::get('/productlist', [PagesController::class, 'Productlist'])->name('kategori.listesi');
-Route::get('/productadd', [PagesController::class, 'Productadd'])->name('kategori.ekleme');
+Route::get('/category/list', [CategoriesController::class, 'Categorylist'])->name('kategori.listesi');
+Route::get('/category/add', [CategoriesController::class, 'Categoryadd'])->name('kategori.ekleme');
+Route::post('/category/adj', [CategoriesController::class, 'Categoryadj'])->name('kategori.duzenleme');
+Route::post('/category/del', [CategoriesController::class, 'Categorydel'])->name('kategori.silme');
 
-Route::get('/categorylist', [PagesController::class, 'Categorylist'])->name('urun.listesi');
-Route::get('/categoryadd', [PagesController::class, 'Categoryadd'])->name('urun.ekleme');
-
+Route::get('/product/list', [ProductsController::class, 'Productlist'])->name('urun.listesi');
+Route::get('/product/add', [ProductsController::class, 'Productadd'])->name('urun.ekleme');
+Route::post('/product/del', [ProductsController::class, 'Productdel'])->name('urun.silme');

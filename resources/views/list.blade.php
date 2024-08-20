@@ -7,7 +7,7 @@
     <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 0;
     padding: 20px;
 }
@@ -41,6 +41,7 @@ th {
     text-transform: uppercase;
     font-size: 14px;
 }
+/*
 
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
@@ -49,7 +50,7 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #f1f1f1;
 }
-
+*/
 .action-buttons {
     display: flex;
     gap: 10px;
