@@ -11,13 +11,14 @@ class UserSeed extends Seeder
     
     public function run(): void
     {
-        $category=['Elektronik','Beyaz eşya','Kozmetik'];
-        foreach($category as $cat){
+        $UserName=['Poyraz'=>'Poyraz-1','Erkam'=>'Erkam-2','Buğra'=>'Buğra-3','Emirhan'=>'Emirhan-4'];
+        foreach($UserName as $UsNa=>$UsTi){
         DB::table('users')->insert([
-            'name'=>$cat,
-            'email'=>"poyraz_7533@hotmail.com",
-            'password'=>md5('102030')
+            'Username'=>$UsNa,
+            'UserTitle'=>$UsTi,
+            'Password'=>123456
         ]);
+          
         }
 
     }
