@@ -40,6 +40,7 @@
             </tr>
             <!-- Daha fazla satır ekleyebilirsiniz -->
         </tbody>
+        
     </table>
 </div>
 @endsection

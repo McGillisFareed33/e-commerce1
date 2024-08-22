@@ -1,7 +1,25 @@
 @extends('template')
 
 @section('content')
+   
+<form method="post" action="{{ route('kullanici.ekle') }}" >
     
-<h1>UserAdd</h1>
-<p>This is the userAddpage</p>
+    @csrf
+    <label for="Username">Username:</label>
+    <input type="text" id="Username" name="Username" >
+    
+    <label for="Password">Password:</label>
+    <input type="password" id="Password" name="Password">
+    
+    <button type="submit">Submit</button>
+</form>
+@if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

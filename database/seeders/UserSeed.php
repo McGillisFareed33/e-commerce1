@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class UserSeed extends Seeder
 {
@@ -16,7 +17,9 @@ class UserSeed extends Seeder
         DB::table('users')->insert([
             'Username'=>$UsNa,
             'UserTitle'=>$UsTi,
-            'Password'=>123456
+            'Password'=>123456, 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
           
         }

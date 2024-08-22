@@ -7,6 +7,11 @@
 <div class="table-container">
     <table>
         <thead>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
             <tr>
                 <th>ID</th>
                 <th>Username</th>
@@ -17,23 +22,23 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <!-- foreach yapılacak -->
         <tbody>
+            @foreach($users as $user)
             <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>Admin</td>
-                <td>*******</td>
-                <td>2024-01-01</td>
-                <td>2024-01-02</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->Username }}</td>
+                <td>{{ $user->UserTitle }}</td>
+                <td>{{ $user->Password }}</td>
+                <td>{{ $user->created_at }}</td>
+                <td>{{ $user->updated_at }}</td>
                 <td>
                     
                     <div class="action-buttons">
-                    <form method="post" action="{{route('kullanici.duzenleme')}}">
+                    <form method="get" action="{{route('kullanici.duzenleme', $user->id)}}">
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="post" action="{{route('kullanici.silme')}}">
+                    <form method="get" action="{{route('kullanici.silme', $user->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>
@@ -41,7 +46,7 @@
                 
                 </td>
             </tr>
-            <!-- Daha fazla satır ekleyebilirsiniz -->
+            @endforeach
         </tbody>
     </table>
 </div>
