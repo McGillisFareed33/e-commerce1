@@ -100,6 +100,9 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        return view('user.userDel');
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('kullanici.listesi', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

@@ -15,7 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Username</th>
-                <th>UserTitle</th>
+                <th>User Title</th>
                 <th>Password</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>

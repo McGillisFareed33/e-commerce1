@@ -1,7 +1,11 @@
 @extends('template')
 
 @section('content')
-    
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <form method="post" action="{{ route('kullanici.duzenle', $user->id) }}" >
 
     @csrf

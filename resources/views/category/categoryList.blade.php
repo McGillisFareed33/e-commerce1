@@ -8,9 +8,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>UserTitle</th>
-                <th>Password</th>
+                <th>Category Title</th>
+                <th>Category Description</th>
+                <th>Status</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
                 <th>Actions</th>
@@ -18,26 +18,26 @@
         </thead>
         <!-- foreach yapılacak -->
         <tbody>
+            @foreach($categories as $category)
             <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>Admin</td>
-                <td>*******</td>
-                <td>2024-01-01</td>
-                <td>2024-01-02</td>
+                <td>{{ $category->id }}</td>
+                <td>{{ $category->CategoryTitle }}</td>
+                <td>{{ $category->CategoryDescription }}</td>
+                <td>{{ $category->Status }}</td>
+                <td>{{ $category->created_at }}</td>
+                <td>{{ $category->updated_at }}</td>
                 <td>
-                    
                     <div class="action-buttons">
-                    <form method="post" action="{{route('kategori.duzenleme')}}">
+                    <form method="get" action="{{route('kategori.duzenleme')}}">
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="post" action="{{route('kategori.silme')}}">
+                    <form method="get" action="{{route('kategori.silme')}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>
                     </div>
-                
+                    @endforeach
                 </td>
             </tr>
             <!-- Daha fazla satır ekleyebilirsiniz -->

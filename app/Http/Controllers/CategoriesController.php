@@ -3,19 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoriesController extends Controller
 {
-    public function Categorylist(){
-        return view('category.categoryList');
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $categories = Category::all();
+        return view('category.categoryList', compact('categories'));
     }
-    public function Categoryadd(){
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
         return view('category.categoryAdd');
     }
-    public function Categoryadj(){
-        return view('category.categoryAdj');
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
-    public function Categorydel(){
-        return view('category.categoryDel');
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

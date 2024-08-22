@@ -8,10 +8,10 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>UserTitle</th>
-                <th>Password</th>
-                <th>Password</th>
+                <th>Product Title</th>
+                <th>Product CategoryId</th>
+                <th>Barcode</th>
+                <th>Product Status</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
                 <th>Actions</th>
@@ -19,18 +19,18 @@
         </thead>
         <!-- foreach yapılacak -->
         <tbody>
+            @foreach($products as $product)
             <tr>
-                <td>1</td>
-                <td>john_doe</td>
-                <td>Admin</td>
-                <td>*******</td>
-                <th>Password</th>
-                <td>2024-01-01</td>
-                <td>2024-01-02</td>
+                <td>{{ $product->id }}</td>
+                <td>{{ $product->ProductTitle }}</td>
+                <td>{{ $product->ProductCategoryId }}</td>
+                <td>{{ $product->Barcode }}</td>
+                <td>{{ $product->ProductStatus }}</td>
+                <td>{{ $product->created_at }}</td>
+                <td>{{ $product->updated_at }}</td>
                 <td>
-                    
                     <div class="action-buttons">
-                    <form method="post" action="{{route('urun.silme')}}">
+                    <form method="get" action="{{route('urun.silme', $product->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>
@@ -38,7 +38,7 @@
                 
                 </td>
             </tr>
-            <!-- Daha fazla satır ekleyebilirsiniz -->
+            @endforeach
         </tbody>
         
     </table>

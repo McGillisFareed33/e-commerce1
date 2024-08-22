@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('UserTitle');
             $table->string('Password');
             $table->timestamps();
+            $table->softDeletes(); 
 
         });
     }
