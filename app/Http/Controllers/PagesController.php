@@ -9,8 +9,8 @@ class PagesController extends Controller
     public function index(){
         return view('login');
     }
-    public function templatecheck(){
-        return view('template');
+    public function anasayfa(){
+        return view('anasayfa');
     }
     
 

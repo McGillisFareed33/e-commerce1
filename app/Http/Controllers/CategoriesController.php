@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoriesController extends Controller
 {
@@ -29,7 +30,24 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'CategoryTitle' => 'required|unique:categories',
+            'Status' => 'required|in:aktif,pasif'
+            
+        ], [
+            'Status.in' => 'Status alanı sadece "aktif" veya "pasif" değerlerini alabilir.',
+        ]);
+
+
+        $category = Category::create([
+            'CategoryTitle' => $request->CategoryTitle,
+            'CategoryDescription' => $request->CategoryDescription,
+            'Status'=> $request->Status
+        ]);
+        $category->save();
+
+        return redirect()->route('kategori.listesi')->with('success', 'Kategori başarıyla güncellendi.');
+
     }
 
     /**
@@ -45,7 +63,9 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('category.categoryadj', compact('category'));
     }
 
     /**
@@ -53,7 +73,33 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'Status' => 'required|in:aktif,pasif'
+            
+        ], [
+            'Status.in' => 'Status alanı sadece "aktif" veya "pasif" değerlerini alabilir.',
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        if($category->CategoryTitle !== $request->CategoryTitle){
+            $request->validate([
+                'CategoryTitle' => 'required|unique:categories',
+            ]);
+            }
+
+        $category->CategoryTitle = $request->CategoryTitle;
+
+        if ($request->filled('CategoryDescription')) {
+            $category->CategoryDescription = $request->CategoryDescription;
+        }
+
+        if ($request->filled('Status')) {
+            $category->Status = $request->Status;
+        }
+        $category->save();
+
+        return redirect()->route('kategori.duzenleme', $id)->with('success', 'Kategori başarılıyla güncellendi!');
     }
 
     /**
@@ -61,6 +107,10 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        Product::where('ProductCategoryId', $id)->update(['ProductCategoryId' => null]);
+        $category->delete();
+
+        return redirect()->route('kategori.listesi', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

@@ -20,4 +20,8 @@ class Category extends Authenticatable
 
     protected $casts = [
     ];
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'ProductCategoryId');
+    }
 }

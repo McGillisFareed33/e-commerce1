@@ -6,6 +6,11 @@
 <div class="table-container">
     <table>
         <thead>
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
             <tr>
                 <th>ID</th>
                 <th>Category Title</th>
@@ -28,11 +33,11 @@
                 <td>{{ $category->updated_at }}</td>
                 <td>
                     <div class="action-buttons">
-                    <form method="get" action="{{route('kategori.duzenleme')}}">
+                    <form method="get" action="{{route('kategori.duzenleme', $category->id)}}">
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="get" action="{{route('kategori.silme')}}">
+                    <form method="get" action="{{route('kategori.silme', $category->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>

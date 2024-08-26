@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         if (empty($errors)) {
             // Giriş başarılı, oturum başlat
-            return redirect('/template'); // Giriş sonrası yönlendirme
+            return redirect('/anasayfa'); // Giriş sonrası yönlendirme
         }
         else{
             return redirect('/')

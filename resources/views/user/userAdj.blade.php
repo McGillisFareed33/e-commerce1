@@ -10,7 +10,10 @@
 
     @csrf
     <label for="Username">Username:</label>
-    <input type="text" id="Username" name="Username" value="{{ old('Username', $user->Username) }}" required>
+    <input type="text" id="Username" name="Username" value="{{ old('Username', $user->Username) }}">
+
+    <label for="UserTitle">UserTitle:</label>
+    <input type="text" id="UserTitle" name="UserTitle" value="{{ old('UserTitle', $user->UserTitle) }}">
     
     <label for="Password">Password:</label>
     <input type="password" id="Password" name="Password">

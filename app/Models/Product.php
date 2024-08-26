@@ -21,4 +21,17 @@ class Product extends Authenticatable
 
     protected $casts = [
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($category) {
+            // Kategoriye bağlı ürünlerin kategori ID'sini null yap
+            Product::where('ProductCategoryId', $category->id)->update(['ProductCategoryId' => null]);
+        });
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'ProductCategoryId');
+    }
 }

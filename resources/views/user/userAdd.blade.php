@@ -7,6 +7,9 @@
     @csrf
     <label for="Username">Username:</label>
     <input type="text" id="Username" name="Username" >
+
+    <label for="UserTitle">UserTitle:</label>
+    <input type="text" id="UserTitle" name="UserTitle" >
     
     <label for="Password">Password:</label>
     <input type="password" id="Password" name="Password">

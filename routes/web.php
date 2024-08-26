@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PagesController::class, 'index'])->name('cikis');
 Route::post('/', [LoginController::class, 'login'])->name('login.validate');
 
-Route::get('/template', [PagesController::class, 'templatecheck']);
+Route::get('/anasayfa', [PagesController::class, 'anasayfa']);
 
 Route::get('/user/list', [UsersController::class, 'index'])->name('kullanici.listesi');
 Route::get('/user/add', [UsersController::class, 'create'])->name('kullanici.ekleme');
@@ -22,11 +22,11 @@ Route::get('/user/del/{id}', [UsersController::class, 'destroy'])->name('kullani
 Route::get('/category/list', [CategoriesController::class, 'index'])->name('kategori.listesi');
 Route::get('/category/add', [CategoriesController::class, 'create'])->name('kategori.ekleme');
 Route::post('/category/add', [CategoriesController::class, 'store'])->name('kategori.ekle');
-Route::get('/category/adj', [CategoriesController::class, 'edit'])->name('kategori.duzenleme');
-Route::post('/category/adj', [CategoriesController::class, 'update'])->name('kategori.duzenle');
-Route::get('/category/del', [CategoriesController::class, 'destroy'])->name('kategori.silme');
+Route::get('/category/adj/{id}', [CategoriesController::class, 'edit'])->name('kategori.duzenleme');
+Route::post('/category/adj/{id}', [CategoriesController::class, 'update'])->name('kategori.duzenle');
+Route::get('/category/del/{id}', [CategoriesController::class, 'destroy'])->name('kategori.silme');
 
 Route::get('/product/list', [ProductsController::class, 'index'])->name('urun.listesi');
 Route::get('/product/add', [ProductsController::class, 'create'])->name('urun.ekleme');
 Route::post('/product/add', [ProductsController::class, 'store'])->name('urun.ekle');
-Route::get('/product/del', [ProductsController::class, 'destroy'])->name('urun.silme');
+Route::get('/product/del/{id}', [ProductsController::class, 'destroy'])->name('urun.silme');

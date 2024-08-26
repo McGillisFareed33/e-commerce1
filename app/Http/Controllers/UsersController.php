@@ -39,10 +39,9 @@ class UsersController extends Controller
         $user = User::create([
             'Username' => $request->Username,
             'Password' => $request->Password,
+            'UserTitle' => $request->UserTitle
         ]);
     
-        // UserTitle'ı oluştur ve güncelle
-        $user->UserTitle = $user->Username . '-' . $user->id;
         $user->save();
     
         // Başarılı bir şekilde kaydedildi mesajı ve yönlendirme
@@ -75,20 +74,27 @@ class UsersController extends Controller
     {
         // Form verilerini doğrula
         $request->validate([
-            'Username' => 'required|string|alpha_num|unique:users',
             'Password' => 'nullable|string|min:6',
+            'UserTitle' => 'nullable|string'
         ]);
         // Kullanıcıyı ID'sine göre al
         $user = User::findOrFail($id);
 
-        // Kullanıcı bilgilerini güncelle
-        $user->Username = $request->Username;
+        if($user->Username !== $request->Username){
+        $request->validate([
+            'Username' => 'required|string|alpha_num|unique:users'
+        ]);
+        }
 
+        $user->Username = $request->Username;
+        
+        if ($request->filled('UserTitle')) {
+            $user->UserTitle = $request->UserTitle;
+            }
         if ($request->filled('Password')) {
             $user->Password = $request->Password;
         }
-
-        $user->UserTitle = $user->Username . '-' . $user->id;
+        
         $user->save();
 
         // Başarılı bir şekilde güncellendi mesajı ve yönlendirme

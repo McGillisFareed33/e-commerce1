@@ -6,6 +6,11 @@
 <div class="table-container">
     <table>
         <thead>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <tr>
                 <th>ID</th>
                 <th>Product Title</th>
@@ -23,7 +28,9 @@
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->ProductTitle }}</td>
-                <td>{{ $product->ProductCategoryId }}</td>
+                <td>
+                    {{ $product->category ? $product->category->CategoryTitle : 'Kategori Yok' }}
+                </td>
                 <td>{{ $product->Barcode }}</td>
                 <td>{{ $product->ProductStatus }}</td>
                 <td>{{ $product->created_at }}</td>

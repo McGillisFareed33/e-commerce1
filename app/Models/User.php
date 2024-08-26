@@ -38,8 +38,9 @@ class User extends Authenticatable
     ];
     protected static function boot()
     {
+        
         parent::boot();
-
+        /*
         static::creating(function ($user) {
             // UserTitle'ı oluştur
             // 'id' kullanıcı kaydedilmeden önce oluşturulamaz, dolayısıyla 'creating' olayında sadece 'Username' kullanılır
@@ -51,5 +52,6 @@ class User extends Authenticatable
             $user->UserTitle = $user->Username . '-' . $user->id;
             $user->save();
         });
+        */
     }
 }

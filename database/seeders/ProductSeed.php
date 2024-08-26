@@ -16,7 +16,7 @@ class ProductSeed extends Seeder
         // Örnek veri ekleme
         DB::table('products')->insert([
             [
-                'ProductTitle' => 'Ürün 1',
+                'ProductTitle' => 'Bilgisayar',
                 'ProductCategoryId' => 1,
                 'Barcode' => Str::random(10),
                 'ProductStatus' => 'aktif',
@@ -24,7 +24,7 @@ class ProductSeed extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'ProductTitle' => 'Ürün 2',
+                'ProductTitle' => 'Atkı',
                 'ProductCategoryId' => 2,
                 'Barcode' => Str::random(10),
                 'ProductStatus' => 'pasif',
@@ -32,7 +32,7 @@ class ProductSeed extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'ProductTitle' => 'Ürün 3',
+                'ProductTitle' => 'Koltuk',
                 'ProductCategoryId' => 3,
                 'Barcode' => Str::random(10),
                 'ProductStatus' => 'aktif',

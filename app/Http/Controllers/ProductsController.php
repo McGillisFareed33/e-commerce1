@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -13,6 +15,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
+        
         return view('product.productList', compact('products'));
     }
 
@@ -21,7 +24,10 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('product.productAdd');
+        // Tüm kategorileri çek
+        $categories = Category::all();
+
+        return view('product.productAdd', compact('categories'));
     }
 
     /**
@@ -29,8 +35,32 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ProductTitle' => 'required',
+            'ProductCategoryId' => 'required',
+            'ProductStatus' => 'required|in:aktif,pasif'
+
+        ], [
+            'ProductStatus.in' => 'ProductStatus alanı sadece "aktif" veya "pasif" değerlerini alabilir.',
+        ]);
+
+        // Rastgele barkod oluştur
+          $randomBarcode = Str::random(10); // 10 karakter uzunluğunda rastgele bir barkod
+
+
+
+        $product = Product::create([
+            'ProductTitle' => $request->ProductTitle,
+            'ProductCategoryId' => $request->ProductCategoryId,
+            'Barcode' => $randomBarcode,
+            'ProductStatus' =>$request->ProductStatus
+        ]);
+        $product->save();
+
+        return redirect()->route('urun.listesi')->with('success', 'Ürün başarıyla güncellendi.');
+
     }
+
 
     /**
      * Display the specified resource.
@@ -61,6 +91,9 @@ class ProductsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('urun.listesi', $id)->with('success', 'Ürün başarılıyla silindi!');
     }
 }
