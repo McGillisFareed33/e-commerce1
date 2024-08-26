@@ -6,19 +6,19 @@
     {{ session('success') }}
 </div>
 @endif
-<form method="post" action="{{ route('kullanici.duzenle', $user->id) }}" >
+<form method="post" action="{{ route('user.update', $user->id) }}" >
 
     @csrf
-    <label for="Username">Username:</label>
+    <label for="Username">Takma ad:</label>
     <input type="text" id="Username" name="Username" value="{{ old('Username', $user->Username) }}">
 
-    <label for="UserTitle">UserTitle:</label>
+    <label for="UserTitle">Kullanıcı ismi:</label>
     <input type="text" id="UserTitle" name="UserTitle" value="{{ old('UserTitle', $user->UserTitle) }}">
     
-    <label for="Password">Password:</label>
+    <label for="Password">Şfire:</label>
     <input type="password" id="Password" name="Password">
     
-    <button type="submit">Update</button>
+    <button type="submit">Güncelle</button>
 </form>
 @if ($errors->any())
     <div>

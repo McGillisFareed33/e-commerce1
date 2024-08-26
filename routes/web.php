@@ -12,21 +12,21 @@ Route::post('/', [LoginController::class, 'login'])->name('login.validate');
 
 Route::get('/anasayfa', [PagesController::class, 'anasayfa']);
 
-Route::get('/user/list', [UsersController::class, 'index'])->name('kullanici.listesi');
-Route::get('/user/add', [UsersController::class, 'create'])->name('kullanici.ekleme');
-Route::post('/user/add', [UsersController::class, 'store'])->name('kullanici.ekle');
-Route::get('/user/adj/{id}', [UsersController::class, 'edit'])->name('kullanici.duzenleme');
-Route::post('/user/adj/{id}', [UsersController::class, 'update'])->name('kullanici.duzenle');
-Route::get('/user/del/{id}', [UsersController::class, 'destroy'])->name('kullanici.silme');
+Route::get('/user/list', [UsersController::class, 'index'])->name('user.list');
+Route::get('/user/add', [UsersController::class, 'create'])->name('user.create');
+Route::post('/user/add', [UsersController::class, 'store'])->name('user.store');
+Route::get('/user/edit/{id}', [UsersController::class, 'edit'])->name('user.edit');
+Route::post('/user/edit/{id}', [UsersController::class, 'update'])->name('user.update');
+Route::get('/user/del/{id}', [UsersController::class, 'destroy'])->name('user.delete');
 
-Route::get('/category/list', [CategoriesController::class, 'index'])->name('kategori.listesi');
-Route::get('/category/add', [CategoriesController::class, 'create'])->name('kategori.ekleme');
-Route::post('/category/add', [CategoriesController::class, 'store'])->name('kategori.ekle');
-Route::get('/category/adj/{id}', [CategoriesController::class, 'edit'])->name('kategori.duzenleme');
-Route::post('/category/adj/{id}', [CategoriesController::class, 'update'])->name('kategori.duzenle');
-Route::get('/category/del/{id}', [CategoriesController::class, 'destroy'])->name('kategori.silme');
+Route::get('/category/list', [CategoriesController::class, 'index'])->name('category.list');
+Route::get('/category/add', [CategoriesController::class, 'create'])->name('category.create');
+Route::post('/category/add', [CategoriesController::class, 'store'])->name('category.store');
+Route::get('/category/edit/{id}', [CategoriesController::class, 'edit'])->name('category.edit');
+Route::post('/category/edit/{id}', [CategoriesController::class, 'update'])->name('category.update');
+Route::get('/category/del/{id}', [CategoriesController::class, 'destroy'])->name('category.delete');
 
-Route::get('/product/list', [ProductsController::class, 'index'])->name('urun.listesi');
-Route::get('/product/add', [ProductsController::class, 'create'])->name('urun.ekleme');
-Route::post('/product/add', [ProductsController::class, 'store'])->name('urun.ekle');
-Route::get('/product/del/{id}', [ProductsController::class, 'destroy'])->name('urun.silme');
+Route::get('/product/list', [ProductsController::class, 'index'])->name('product.list');
+Route::get('/product/add', [ProductsController::class, 'create'])->name('product.create');
+Route::post('/product/add', [ProductsController::class, 'store'])->name('product.store');
+Route::get('/product/del/{id}', [ProductsController::class, 'destroy'])->name('product.delete');

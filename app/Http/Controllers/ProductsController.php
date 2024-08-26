@@ -16,7 +16,7 @@ class ProductsController extends Controller
     {
         $products = Product::all();
         
-        return view('product.productList', compact('products'));
+        return view('product.list', compact('products'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductsController extends Controller
         // Tüm kategorileri çek
         $categories = Category::all();
 
-        return view('product.productAdd', compact('categories'));
+        return view('product.add', compact('categories'));
     }
 
     /**
@@ -57,7 +57,7 @@ class ProductsController extends Controller
         ]);
         $product->save();
 
-        return redirect()->route('urun.listesi')->with('success', 'Ürün başarıyla güncellendi.');
+        return redirect()->route('product.list')->with('success', 'Ürün başarıyla güncellendi.');
 
     }
 
@@ -94,6 +94,6 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('urun.listesi', $id)->with('success', 'Ürün başarılıyla silindi!');
+        return redirect()->route('product.list', $id)->with('success', 'Ürün başarılıyla silindi!');
     }
 }

@@ -13,13 +13,13 @@
             @endif
             <tr>
                 <th>ID</th>
-                <th>Product Title</th>
-                <th>Product CategoryId</th>
-                <th>Barcode</th>
-                <th>Product Status</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Actions</th>
+                <th>Ürün ismi</th>
+                <th>Ürün kategorisi</th>
+                <th>Barkod</th>
+                <th>Ürün durumu</th>
+                <th>Oluşturulma zamanı</th>
+                <th>Güncellenme zamanı</th>
+                <th>Aksiyon</th>
             </tr>
         </thead>
         <!-- foreach yapılacak -->
@@ -37,7 +37,7 @@
                 <td>{{ $product->updated_at }}</td>
                 <td>
                     <div class="action-buttons">
-                    <form method="get" action="{{route('urun.silme', $product->id)}}">
+                    <form method="get" action="{{route('product.delete', $product->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>

@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('category.categoryList', compact('categories'));
+        return view('category.list', compact('categories'));
     }
 
     /**
@@ -22,7 +22,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('category.categoryAdd');
+        return view('category.add');
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoriesController extends Controller
         ]);
         $category->save();
 
-        return redirect()->route('kategori.listesi')->with('success', 'Kategori başarıyla güncellendi.');
+        return redirect()->route('category.list')->with('success', 'Kategori başarıyla güncellendi.');
 
     }
 
@@ -65,7 +65,7 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        return view('category.categoryadj', compact('category'));
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoriesController extends Controller
         }
         $category->save();
 
-        return redirect()->route('kategori.duzenleme', $id)->with('success', 'Kategori başarılıyla güncellendi!');
+        return redirect()->route('category.edit', $id)->with('success', 'Kategori başarılıyla güncellendi!');
     }
 
     /**
@@ -111,6 +111,6 @@ class CategoriesController extends Controller
         Product::where('ProductCategoryId', $id)->update(['ProductCategoryId' => null]);
         $category->delete();
 
-        return redirect()->route('kategori.listesi', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
+        return redirect()->route('category.list', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

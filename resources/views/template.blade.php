@@ -87,12 +87,12 @@
         
         <h3>Menü</h3>
         <ul>
-            <li><a href="{{ route('kullanici.listesi') }}">Kullanıcı Listesi</a></li>
-            <li><a href="{{ route('kullanici.ekleme') }}">Kullanıcı Ekleme</a></li>
-            <li><a href="{{ route('kategori.listesi') }}">Kategori Listesi</a></li>
-            <li><a href="{{ route('kategori.ekleme') }}">Kategori Ekleme</a></li>
-            <li><a href="{{ route('urun.listesi') }}">Ürün Listesi</a></li>
-            <li><a href="{{ route('urun.ekleme') }}">Ürün Ekleme</a></li>
+            <li><a href="{{ route('user.list') }}">Kullanıcı Listesi</a></li>
+            <li><a href="{{ route('user.create') }}">Kullanıcı Ekleme</a></li>
+            <li><a href="{{ route('category.list') }}">Kategori Listesi</a></li>
+            <li><a href="{{ route('category.create') }}">Kategori Ekleme</a></li>
+            <li><a href="{{ route('product.list') }}">Ürün Listesi</a></li>
+            <li><a href="{{ route('product.create') }}">Ürün Ekleme</a></li>
         </ul>
     </div>
 

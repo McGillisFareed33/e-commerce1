@@ -2,19 +2,19 @@
 
 @section('content')
    
-<form method="post" action="{{ route('kullanici.ekle') }}" >
+<form method="post" action="{{ route('user.store') }}" >
     
     @csrf
-    <label for="Username">Username:</label>
+    <label for="Username">Takma ad:</label>
     <input type="text" id="Username" name="Username" >
 
-    <label for="UserTitle">UserTitle:</label>
+    <label for="UserTitle">Kullanıcı ismi:</label>
     <input type="text" id="UserTitle" name="UserTitle" >
     
-    <label for="Password">Password:</label>
+    <label for="Password">Şfire:</label>
     <input type="password" id="Password" name="Password">
     
-    <button type="submit">Submit</button>
+    <button type="submit">Onayla</button>
 </form>
 @if ($errors->any())
     <div>

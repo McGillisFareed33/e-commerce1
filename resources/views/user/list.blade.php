@@ -14,12 +14,12 @@
         @endif
             <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>User Title</th>
-                <th>Password</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Actions</th>
+                <th>Takma ad</th>
+                <th>Kullanıcı ismi</th>
+                <th>Şifre</th>
+                <th>Oluşturulma zamanı</th>
+                <th>Güncellenme zamanı</th>
+                <th>Aksiyon</th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +34,11 @@
                 <td>
                     
                     <div class="action-buttons">
-                    <form method="get" action="{{route('kullanici.duzenleme', $user->id)}}">
+                    <form method="get" action="{{route('user.edit', $user->id)}}">
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="get" action="{{route('kullanici.silme', $user->id)}}">
+                    <form method="get" action="{{route('user.delete', $user->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>

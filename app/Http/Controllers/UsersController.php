@@ -13,7 +13,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.userList', compact('users'));
+        return view('user.list', compact('users'));
     }
 
     /**
@@ -21,7 +21,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('user.userAdd');
+        return view('user.add');
     }
 
     /**
@@ -45,7 +45,7 @@ class UsersController extends Controller
         $user->save();
     
         // Başarılı bir şekilde kaydedildi mesajı ve yönlendirme
-        return redirect()->route('kullanici.listesi')->with('success', 'Kullanıcı başarıyla kaydedildi!');
+        return redirect()->route('user.list')->with('success', 'Kullanıcı başarıyla kaydedildi!');
     }
     /**
      * Display the specified resource.
@@ -64,7 +64,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
 
         // Düzenleme formunu döndür
-        return view('user.useradj', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -98,7 +98,7 @@ class UsersController extends Controller
         $user->save();
 
         // Başarılı bir şekilde güncellendi mesajı ve yönlendirme
-        return redirect()->route('kullanici.duzenleme', $id)->with('success', 'Kullanıcı başarılıyla güncellendi!');
+        return redirect()->route('user.edit', $id)->with('success', 'Kullanıcı başarılıyla güncellendi!');
     }
 
     /**
@@ -109,6 +109,6 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('kullanici.listesi', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
+        return redirect()->route('user.list', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

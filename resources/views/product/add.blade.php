@@ -2,10 +2,10 @@
 
 @section('content')
    
-<form method="post" action="{{ route('urun.ekle') }}" >
+<form method="post" action="{{ route('product.store') }}" >
     
     @csrf
-    <label for="ProductTitle">ProductTitle:</label>
+    <label for="ProductTitle">Ürün ismi:</label>
     <input type="text" id="ProductTitle" name="ProductTitle" >
     
     <label for="ProductCategoryId">Kategori Seç:</label>
@@ -23,7 +23,7 @@
                 <option value="aktif">Aktif</option>
             </select>
     
-    <button type="submit">Submit</button>
+    <button type="submit">Onayla</button>
 </form>
 @if ($errors->any())
     <div>

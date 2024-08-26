@@ -6,22 +6,22 @@
     {{ session('success') }}
 </div>
 @endif
-<form method="post" action="{{ route('kategori.duzenle', $category->id) }}" >
+<form method="post" action="{{ route('category.edit', $category->id) }}" >
 
     @csrf
-    <label for="CategoryTitle">CategoryTitle:</label>
+    <label for="CategoryTitle">Kategori ismi:</label>
     <input type="text" id="CategoryTitle" name="CategoryTitle" value="{{ old('CategoryTitle', $category->CategoryTitle) }}">
     
-    <label for="CategoryDescription">Username:</label>
+    <label for="CategoryDescription">Kategori tanımı:</label>
     <input type="text" id="CategoryDescription" name="CategoryDescription" value="{{ old('CategoryDescription', $category->CategoryDescription) }}">
 
-    <label for="Status">Ürün Durumu:</label>
+    <label for="Status">Kategori durumu:</label>
             <select id="Status" name="Status">
                 <option value="pasif">Pasif</option>
                 <option value="aktif">Aktif</option>
             </select>
     
-    <button type="submit">Update</button>
+    <button type="submit">Güncelle</button>
 </form>
 @if ($errors->any())
     <div>

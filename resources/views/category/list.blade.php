@@ -13,12 +13,12 @@
         @endif
             <tr>
                 <th>ID</th>
-                <th>Category Title</th>
-                <th>Category Description</th>
-                <th>Status</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Actions</th>
+                <th>Kategori ismi</th>
+                <th>Kategori tanımı</th>
+                <th>Kategori durumu</th>
+                <th>Oluşturulma zamanı</th>
+                <th>Güncellenme zamanı</th>
+                <th>Aksiyon</th>
             </tr>
         </thead>
         <!-- foreach yapılacak -->
@@ -33,11 +33,11 @@
                 <td>{{ $category->updated_at }}</td>
                 <td>
                     <div class="action-buttons">
-                    <form method="get" action="{{route('kategori.duzenleme', $category->id)}}">
+                    <form method="get" action="{{route('category.edit', $category->id)}}">
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="get" action="{{route('kategori.silme', $category->id)}}">
+                    <form method="get" action="{{route('category.delete', $category->id)}}">
                         @csrf
                         <button class="delete-button" >Sil</button>
                     </form>
