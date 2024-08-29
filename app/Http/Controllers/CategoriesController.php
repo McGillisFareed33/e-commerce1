@@ -81,6 +81,7 @@ class CategoriesController extends Controller
         ]);
 
         $category = Category::findOrFail($id);
+        
 
         if($category->CategoryTitle !== $request->CategoryTitle){
             $request->validate([
@@ -97,6 +98,12 @@ class CategoriesController extends Controller
         if ($request->filled('Status')) {
             $category->Status = $request->Status;
         }
+        if ($category->Status === 'pasif') {
+            Product::where('ProductCategoryId', $category->id)->update(['ProductStatus' => 'pasif']);
+        }
+        
+        
+        
         $category->save();
 
         return redirect()->route('category.edit', $id)->with('success', 'Kategori başarılıyla güncellendi!');
@@ -108,7 +115,7 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrFail($id);
-        Product::where('ProductCategoryId', $id)->update(['ProductCategoryId' => null]);
+        Product::where('ProductCategoryId', $id)->update(['ProductCategoryId' => null,'ProductStatus' => 'pasif']);
         $category->delete();
 
         return redirect()->route('category.list', $id)->with('success', 'Kullanıcı başarılıyla silindi!');

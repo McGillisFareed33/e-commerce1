@@ -13,7 +13,6 @@ body {
 }
 
 .table-container {
-    max-width: 1000px;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 10px;
@@ -56,6 +55,21 @@ tbody tr:hover {
     gap: 10px;
 }
 
+.edit-button {
+    background-color: cyan;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none; /* Alt çizgiyi kaldırır */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block; /* Buton görünümü için */
+}
+
+.edit-button:hover {
+    background-color: red; /* Hover durumunda arka plan rengi değişikliği */
+}
 .action-buttons button {
     background-color: #28a745;
     color: white;

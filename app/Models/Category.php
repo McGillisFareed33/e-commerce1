@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+
 
 class Category extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     // Diğer model özellikleri ve ilişkiler
     protected $fillable = [
@@ -24,4 +27,5 @@ class Category extends Authenticatable
     {
         return $this->hasMany(Product::class, 'ProductCategoryId');
     }
+    
 }

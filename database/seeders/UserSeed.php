@@ -6,23 +6,31 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeed extends Seeder
 {
     
     public function run(): void
-    {
-        $UserName=['Poyraz'=>'Poyraz-1','Erkam'=>'Erkam-2','Buğra'=>'Buğra-3','Emirhan'=>'Emirhan-4'];
-        foreach($UserName as $UsNa=>$UsTi){
+    {$UserData = [
+        ['Username' => 'Poyraz', 'UserTitle' => 'Poyraz-1', 'Role' => 'admin'],
+        ['Username' => 'Erkam', 'UserTitle' => 'Erkam-2', 'Role' => 'user'],
+        ['Username' => 'Buğra', 'UserTitle' => 'Buğra-3', 'Role' => 'user'],
+        ['Username' => 'Emirhan', 'UserTitle' => 'Emirhan-4', 'Role' => 'user'],
+        ['Username' => 'Kerem', 'UserTitle' => 'Kerem-5', 'Role' => 'user'],
+    ];
+    foreach ($UserData as $data) {
         DB::table('users')->insert([
-            'Username'=>$UsNa,
-            'UserTitle'=>$UsTi,
-            'Password'=>123456, 
+            'Username' => $data['Username'],
+            'UserTitle' => $data['UserTitle'],
+            'Password' => '123456',
+            'Role' => $data['Role'],
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+    }
           
         }
 
     }
-}
+

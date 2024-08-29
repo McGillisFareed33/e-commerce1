@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Cache;
+
+class PreventRequestsDuringMaintenance
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
+    public function handle($request, Closure $next)
+    {
+        if ($this->isDownForMaintenance()) {
+            if ($this->isMaintenanceModeAllowed($request)) {
+                return $next($request);
+            }
+
+            throw new HttpResponseException(response()->view('errors.503'), 503);
+        }
+
+        return $next($request);
+    }
+
+    /**
+     * Determine if the application is currently in maintenance mode.
+     *
+     * @return bool
+     */
+    protected function isDownForMaintenance()
+    {
+        return Cache::has('app:maintenance');
+    }
+
+    /**
+     * Determine if the maintenance mode allows the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function isMaintenanceModeAllowed($request)
+    {
+        // Allow requests from specific IP addresses or other conditions
+        // Example: Allow requests from localhost
+        return $request->ip() === '127.0.0.1';
+    }
+}

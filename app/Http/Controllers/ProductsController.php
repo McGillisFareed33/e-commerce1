@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\File;
+
 
 class ProductsController extends Controller
 {
@@ -33,7 +36,7 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $request->validate([
             'ProductTitle' => 'required',
@@ -75,20 +78,48 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        {
+            $product = Product::findOrFail($id);
+            return view('product.edit',compact('product'));
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+     public function update(Request $request, string $id)
     {
-        //
+       $request->validate([
+        'Image.*'=> 'required|Image|mimes:png,jpg,jpeg,webp'
+       ]);
+        $product = Product::findOrFail($id);
+       
+       if($request->file('Image')){
+        $file = $request->file('Image');
+        $extension = $file->getClientOriginalExtension();
+
+        $filename = time().'.'.$extension;
+
+        $path = 'uploads/products/';
+        $file->move($path,$filename);
+
+        if(File::exists($product->image)){
+            File::delete($product->image);
+        }
+        
+
+        $product->Image = $path.$filename;
+    }
+        $product->save();
+        return redirect()->route('product.list')->with('success', 'Resim başarıyla yüklendi.');
+       
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    
+
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);

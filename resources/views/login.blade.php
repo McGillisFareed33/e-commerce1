@@ -82,10 +82,10 @@
         <form method="post" action="{{route('login.validate')}}">
             @csrf
             <label for="username">Kullanıcı Adı:</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" >
             
             <label for="password">Şifre:</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" >
             
             <button type="submit">Giriş</button>
         </form>

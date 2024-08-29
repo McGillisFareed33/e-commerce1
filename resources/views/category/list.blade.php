@@ -37,9 +37,10 @@
                         @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
-                    <form method="get" action="{{route('category.delete', $category->id)}}">
+                    <form id="delete-form" method="get" action="{{route('category.delete', $category->id)}}" onsubmit="return confirm('Bu öğeyi silmek istediğinizden emin misiniz?')">
                         @csrf
-                        <button class="delete-button" >Sil</button>
+                        @method('DELETE')
+                        <button type="submit" class="delete-button" >Sil</button>
                     </form>
                     </div>
                     @endforeach

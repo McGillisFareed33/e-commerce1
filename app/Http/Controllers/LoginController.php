@@ -36,8 +36,6 @@ class LoginController extends Controller
         // Kullanıcıyı veritabanında ara
         $user = User::where('Username', $username)->where('Password',$password)->first();
 
-        
-
         if(empty($user)){
             $errors[]= 'Şifre yanlış.';
         }

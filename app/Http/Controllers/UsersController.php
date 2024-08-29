@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -38,7 +39,7 @@ class UsersController extends Controller
         // Yeni kullanıcı oluştur ve veritabanına kaydet
         $user = User::create([
             'Username' => $request->Username,
-            'Password' => $request->Password,
+            'Password' => Hash::make($request->Password),
             'UserTitle' => $request->UserTitle
         ]);
     
