@@ -15,8 +15,8 @@
     <label for="UserTitle">Kullanıcı ismi:</label>
     <input type="text" id="UserTitle" name="UserTitle" value="{{ old('UserTitle', $user->UserTitle) }}">
     
-    <label for="Password">Şfire:</label>
-    <input type="password" id="Password" name="Password">
+    <label for="password">Şfire:</label>
+    <input type="password" id="password" name="password">
     
     <button type="submit">Güncelle</button>
 </form>

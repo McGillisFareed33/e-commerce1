@@ -29,7 +29,11 @@
             @foreach($products as $product)
             <tr>
                 <td>
+                    @if(!empty($product->Image))
                     <img src="{{asset($product->Image)}}" style="width: 70px; height: 70px;" alt="Img">
+                @else
+                    <div style="width: 70px; height: 70px;"></div>
+                @endif
                 </td>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->ProductTitle }}</td>

@@ -114,6 +114,11 @@
     </style>
 </head>
 <body>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button style= "position: absolute; top: 10px; right: 10px;" type="submit" class="btn btn-danger">Çıkış Yap</button>
+    </form>
+    
     <div class="sidebar">
         
         <h3>Menü</h3>

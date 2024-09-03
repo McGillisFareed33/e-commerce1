@@ -6,14 +6,17 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthRole;
 
 
-Route::get('/', [PagesController::class, 'index'])->name('cikis');
-Route::post('/', [LoginController::class, 'login'])->name('login.validate');
-
+Route::get('/login', [PagesController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.validate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/anasayfa', [PagesController::class, 'anasayfa']);
 
+Route::middleware(['auth'])->group(function () {
 Route::prefix('user')->name('user.')->group(function () {
+    
     Route::get('/list', [UsersController::class, 'index'])->name('list');
     Route::get('/add', [UsersController::class, 'create'])->name('create');
     Route::post('/add', [UsersController::class, 'store'])->name('store');
@@ -40,4 +43,5 @@ Route::prefix('product')->name('product.')->group(function () {
     Route::get('/{id}/upload',[ProductsController::class, 'edit'])->name('edit');
     Route::post('/{id}/upload',[ProductsController::class, 'update'])->name('update');
     Route::get('/del/{id}', [ProductsController::class, 'destroy'])->name('delete');
+});
 });

@@ -33,13 +33,13 @@ class UsersController extends Controller
         // Form verilerini doğrula
         $request->validate([
             'Username' => 'required|alpha_num|unique:users',
-            'Password' => 'required|min:6',
+            'password' => 'required|min:6',
         ]);
 
         // Yeni kullanıcı oluştur ve veritabanına kaydet
         $user = User::create([
             'Username' => $request->Username,
-            'Password' => Hash::make($request->Password),
+            'password' => Hash::make($request->password),
             'UserTitle' => $request->UserTitle
         ]);
     
@@ -75,7 +75,7 @@ class UsersController extends Controller
     {
         // Form verilerini doğrula
         $request->validate([
-            'Password' => 'nullable|string|min:6',
+            'password' => 'nullable|string|min:6',
             'UserTitle' => 'nullable|string'
         ]);
         // Kullanıcıyı ID'sine göre al
@@ -92,8 +92,8 @@ class UsersController extends Controller
         if ($request->filled('UserTitle')) {
             $user->UserTitle = $request->UserTitle;
             }
-        if ($request->filled('Password')) {
-            $user->Password = $request->Password;
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password); // Şifreyi hashle
         }
         
         $user->save();

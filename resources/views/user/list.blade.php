@@ -28,7 +28,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->Username }}</td>
                 <td>{{ $user->UserTitle }}</td>
-                <td>{{ $user->Password }}</td>
+                <td>{{ $user->password }}</td>
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class LoginController extends Controller
 {
@@ -32,22 +35,27 @@ class LoginController extends Controller
         $user = User::where('Username', $username)->first();
         if(empty($user)){
             $errors[]= 'Kullanıcı adı yanlış.';
-        }
-        // Kullanıcıyı veritabanında ara
-        $user = User::where('Username', $username)->where('Password',$password)->first();
+        }    
 
+        $user = User::where('Username', $username)->where('password',$password)->first();
         if(empty($user)){
-            $errors[]= 'Şifre yanlış.';
+          $errors[]= 'Şifre yanlış.';
         }
 
-        if (empty($errors)) {
-            // Giriş başarılı, oturum başlat
-            return redirect('/anasayfa'); // Giriş sonrası yönlendirme
-        }
-        else{
-            return redirect('/')
+        if (Auth::attempt(['Username' => $username, 'password' => $password])) {
+           return redirect('/anasayfa'); 
+           
+        }else{
+            return redirect('/login')
             ->withErrors($errors);
         }
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        
+        // Oturum sonlandırıldığında kullanıcıyı giriş sayfasına yönlendir
+        return redirect('/login');
     }
 
 }

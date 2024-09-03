@@ -103,10 +103,6 @@ class ProductsController extends Controller
         $path = 'uploads/products/';
         $file->move($path,$filename);
 
-        if(File::exists($product->image)){
-            File::delete($product->image);
-        }
-        
 
         $product->Image = $path.$filename;
     }
