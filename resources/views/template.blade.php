@@ -11,6 +11,27 @@
             padding: 0;
             display: flex;
         }
+        .red-background {
+            background-color: #f8d7da; /* Light red background */
+            color: #721c24; /* Dark red text */
+            padding: 15px;
+            border: 1px solid #f5c6cb; /* Light red border */
+            border-radius: 5px;
+            position: fixed;
+            top: 10px; /* Space from the top of the viewport */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust horizontal position */
+            z-index: 1000; /* Ensure it appears above other content */
+            text-align: center;
+            width: auto; /* Width adjusts to content */
+            max-width: 90%; /* Limit the width to a maximum percentage */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            opacity: 1; /* Fully visible */
+            transition: opacity 0.5s ease-out; /* Smooth transition for fading out */
+        }
+        .hidden {
+            opacity: 0; /* Fully transparent */
+        }
          .container {
             max-width: 600px;
             margin: 0 auto;
@@ -116,8 +137,15 @@
 <body>
     <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button style= "position: absolute; top: 10px; right: 10px;" type="submit" class="btn btn-danger">Çıkış Yap</button>
+        <button style= "position: absolute; top: 10px; right: 20px;" type="submit" class="btn btn-danger">Çıkış Yap</button>
     </form>
+    @if ($errors->any())
+    <div class="red-background">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
     
     <div class="sidebar">
         
@@ -131,10 +159,24 @@
             <li><a href="{{ route('product.create') }}">Ürün Ekleme</a></li>
         </ul>
     </div>
-
+    
     <div class="content">
         @yield('content')
     </div>
+    
 
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select the error message container
+        var errorBox = document.querySelector('.red-background');
+    
+        if (errorBox) {
+            // Set a timeout to hide the error box after 2 seconds
+            setTimeout(function() {
+                errorBox.classList.add('hidden');
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+    });
+    </script>

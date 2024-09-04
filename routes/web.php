@@ -6,7 +6,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\AuthRole;
+use App\Http\Middleware\CheckRole;
 
 
 Route::get('/login', [PagesController::class, 'index'])->name('login');
@@ -14,7 +14,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.validate')
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/anasayfa', [PagesController::class, 'anasayfa']);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware([CheckRole::class])->group(function () {
 Route::prefix('user')->name('user.')->group(function () {
     
     Route::get('/list', [UsersController::class, 'index'])->name('list');
@@ -33,8 +33,6 @@ Route::prefix('category')->name('category.')->group(function () {
     Route::post('/edit/{id}', [CategoryController::class, 'update'])->name('update');
     Route::get('/del/{id}', [CategoriesController::class, 'destroy'])->name('delete');
 });
-
-
 
 Route::prefix('product')->name('product.')->group(function () {
     Route::get('/list', [ProductsController::class, 'index'])->name('list');
