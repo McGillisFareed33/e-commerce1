@@ -90,6 +90,7 @@ class ProductsController extends Controller
      public function update(Request $request, string $id)
     {
        $request->validate([
+        'Image' =>'required',
         'Image.*'=> 'required|Image|mimes:png,jpg,jpeg,webp'
        ]);
         $product = Product::findOrFail($id);

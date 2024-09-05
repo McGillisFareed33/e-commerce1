@@ -19,7 +19,13 @@
             display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
             font-size: 16px; /* Yazı boyutu */
         }
-
+        .alert-error {
+        background-color: red; /* Arka plan rengini kırmızı yapar */
+            color: white; /* Yazı rengini beyaz yapar, kontrast sağlar */
+            padding: 5px; /* İçeriğin etrafında boşluk sağlar */
+            display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
+            margin: 10px; /* Dış boşluk sağlar */
+        }
         .red-background {
             background-color: #f8d7da; /* Light red background */
             color: #721c24; /* Dark red text */
@@ -148,13 +154,7 @@
         @csrf
         <button style= "position: absolute; top: 10px; right: 20px;" type="submit" class="btn btn-danger">Çıkış Yap</button>
     </form>
-    @if ($errors->any())
-    <div class="red-background">
-        @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
-@endif
+    
     <div class="sidebar">
         
         <h3>Menü</h3>
@@ -175,16 +175,3 @@
 
 </body>
 </html>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Select the error message container
-        var errorBox = document.querySelector('.red-background');
-    
-        if (errorBox) {
-            // Set a timeout to hide the error box after 2 seconds
-            setTimeout(function() {
-                errorBox.classList.add('hidden');
-            }, 2000); // 2000 milliseconds = 2 seconds
-        }
-    });
-    </script>

@@ -17,7 +17,7 @@
     <button type="submit">Onayla</button>
 </form>
 @if ($errors->any())
-    <div class="red-background">
+    <div class="alert-error">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

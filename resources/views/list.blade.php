@@ -11,6 +11,14 @@ body {
     margin: 0;
     padding: 20px;
 }
+.alert-success {
+            background-color: #d4edda; /* Açık yeşil arka plan */
+            color: #155724; /* Koyu yeşil yazı rengi */
+            padding: 10px; /* İç boşluk */
+            border-radius: 5px; /* Kenarları yuvarlatma */
+            display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
+            font-size: 16px; /* Yazı boyutu */
+}
 
 .table-container {
     margin: 0 auto;
@@ -92,8 +100,37 @@ tbody tr:hover {
     background-color: #c82333;
 }
 </style>
+
 </head>
 <body>
-    @yield('list')
+    
+    @if ($errors->any())
+    <div class="red-background">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+    @endif
+@yield('list')
+
 </body>
 <html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select the error message container
+            var errorBox = document.querySelector('.red-background');
+        
+            if (errorBox) {
+                // Set a timeout to add the 'hidden' class after 2 seconds
+                setTimeout(function() {
+                    errorBox.classList.add('hidden');
+                    
+                    // Remove the element from the DOM after the transition ends
+                    setTimeout(function() {
+                        errorBox.remove();
+                    }, 2000); // Match this duration with the CSS transition time
+                }, 2000); // Adjust this delay as needed
+            }
+        });
+    </script>

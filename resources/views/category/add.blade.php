@@ -20,7 +20,7 @@
     <button type="submit">Onayla</button>
 </form>
 @if ($errors->any())
-    <div>
+    <div class="alert-error">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

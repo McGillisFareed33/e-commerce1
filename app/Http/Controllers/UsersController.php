@@ -35,7 +35,7 @@ class UsersController extends Controller
         // Form verilerini doğrula
         $request->validate([
             'Username' => 'required|alpha_num|unique:users',
-            'password' => 'string|min:6',
+            'password' => 'min:6',
         ]);
 
         
@@ -108,10 +108,14 @@ class UsersController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('user.list')->with('success', 'Kullanıcı başarılıyla silindi!');
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+    if (auth()->id() === (int)$id) {
+        $errors[] = 'Kullanıcı başarılıyla silindi! Lütfen tekrar giriş yapın.';
+        return redirect()->route('login')->withErrors($errors);
     }
+    return redirect()->route('user.list')->with('success', 'Kullanıcı başarılıyla silindi!');
+}
+
 }
