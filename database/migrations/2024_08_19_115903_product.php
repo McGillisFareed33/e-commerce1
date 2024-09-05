@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ProductCategoryId')->nullable();
             $table->string('Barcode');
             $table->string('ProductStatus');
-            $table->string('Image')->nullable();
+            $table->string('Image')->nullable(); //default eklenerek belli bir sayfaya yönlendirilebilir sayfa silindiğinde
             $table->timestamps();
             $table->softDeletes(); 
         });

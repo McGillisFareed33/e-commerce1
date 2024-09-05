@@ -20,7 +20,6 @@
                 <th>Ürün durumu</th>
                 <th>Oluşturulma zamanı</th>
                 <th>Güncellenme zamanı</th>
-                <th>Resimler</th>
                 <th>Aksiyon</th>
             </tr>
         </thead>
@@ -45,10 +44,9 @@
                 <td>{{ $product->created_at }}</td>
                 <td>{{ $product->updated_at }}</td>
                 <td>
-                    <a href="{{$product->id.'/upload'}}" class="edit-button">Resim ekle/görüntüle</a>
-                </td>
-                <td>
                     <div class="action-buttons">
+                    <a href="{{$product->id.'/upload'}}" class="edit-button">Resim ekle</a>
+                
                     <form id="delete-form" method="get" action="{{route('product.delete', $product->id)}}" onsubmit="return confirm('Bu öğeyi silmek istediğinizden emin misiniz?')">
                         @csrf
                         @method('DELETE')
@@ -60,8 +58,8 @@
             </tr>
             @endforeach
         </tbody>
-        
     </table>
+    {{$products->links()}}
 </div>
 @endsection
 @endsection

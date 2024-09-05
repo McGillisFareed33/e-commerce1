@@ -13,7 +13,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
         return view('category.list', compact('categories'));
     }
 
@@ -106,7 +106,7 @@ class CategoriesController extends Controller
         
         $category->save();
 
-        return redirect()->route('category.edit', $id)->with('success', 'Kategori başarılıyla güncellendi!');
+        return redirect()->route('category.list')->with('success', 'Kategori başarılıyla güncellendi!');
     }
 
     /**
@@ -118,6 +118,6 @@ class CategoriesController extends Controller
         Product::where('ProductCategoryId', $id)->update(['ProductCategoryId' => null,'ProductStatus' => 'pasif']);
         $category->delete();
 
-        return redirect()->route('category.list', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
+        return redirect()->route('category.list')->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

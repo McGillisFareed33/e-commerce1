@@ -12,11 +12,11 @@ use App\Http\Middleware\CheckRole;
 Route::get('/login', [PagesController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.validate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/anasayfa', [PagesController::class, 'anasayfa']);
 
 Route::middleware([CheckRole::class])->group(function () {
+    Route::get('/anasayfa', [PagesController::class, 'anasayfa'])->name('anasayfa');
+
 Route::prefix('user')->name('user.')->group(function () {
-    
     Route::get('/list', [UsersController::class, 'index'])->name('list');
     Route::get('/add', [UsersController::class, 'create'])->name('create');
     Route::post('/add', [UsersController::class, 'store'])->name('store');
@@ -30,7 +30,7 @@ Route::prefix('category')->name('category.')->group(function () {
     Route::get('/add', [CategoriesController::class, 'create'])->name('create');
     Route::post('/add', [CategoriesController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [CategoriesController::class, 'edit'])->name('edit');
-    Route::post('/edit/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::post('/edit/{id}', [CategoriesController::class, 'update'])->name('update');
     Route::get('/del/{id}', [CategoriesController::class, 'destroy'])->name('delete');
 });
 

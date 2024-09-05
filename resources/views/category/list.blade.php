@@ -34,7 +34,6 @@
                 <td>
                     <div class="action-buttons">
                     <form method="get" action="{{route('category.edit', $category->id)}}">
-                        @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
                     <form id="delete-form" method="get" action="{{route('category.delete', $category->id)}}" onsubmit="return confirm('Bu öğeyi silmek istediğinizden emin misiniz?')">
@@ -49,6 +48,7 @@
             <!-- Daha fazla satır ekleyebilirsiniz -->
         </tbody>
     </table>
+    {{$categories->links()}}
 </div>
 @endsection
 @endsection

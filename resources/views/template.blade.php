@@ -11,6 +11,15 @@
             padding: 0;
             display: flex;
         }
+        .alert-success {
+            background-color: #d4edda; /* Açık yeşil arka plan */
+            color: #155724; /* Koyu yeşil yazı rengi */
+            padding: 10px; /* İç boşluk */
+            border-radius: 5px; /* Kenarları yuvarlatma */
+            display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
+            font-size: 16px; /* Yazı boyutu */
+        }
+
         .red-background {
             background-color: #f8d7da; /* Light red background */
             color: #721c24; /* Dark red text */
@@ -146,7 +155,6 @@
         @endforeach
     </div>
 @endif
-    
     <div class="sidebar">
         
         <h3>Menü</h3>

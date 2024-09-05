@@ -6,13 +6,15 @@
     <h2 class="product-name">Ürün adı: {{$product->ProductTitle}}
     <hr>
 
-    @if($errors->any())
-    <ul>
-    @foreach ($errors->all() as $error)
+    @if ($errors->any())
+    <div class="red-background">
+        <ul>
+            @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
-    @endforeach
-    </ul>
-    @endif
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <form method="post" action="{{ route('product.update', $product->id) }}" class="product-image" enctype="multipart/form-data">
         @csrf

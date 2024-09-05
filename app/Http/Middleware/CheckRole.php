@@ -24,14 +24,13 @@ class CheckRole
         $errors[]= 'Önce giriş yapmalısınız.';
         }
         if ($user) {
-            if ($user->role === 'admin') {
+            if(strpos($request->route()->getName(), 'anasayfa')!== false){
                 return $next($request);
-            }
-
-            if ($user->role === 'user' && strpos($request->route()->getName(), 'list') !== false) {
+            }elseif($user->role === 'admin') {
+                return $next($request);
+            }elseif($user->role === 'provisor' && strpos($request->route()->getName(), 'list') !== false) {
                 return $next($request);
             }else{
-                
             $errors[]= 'Bu sayfaya erişimeye ya da bunu yapmaya yetkiniz yoktur.';
             }
         }

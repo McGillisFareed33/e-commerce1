@@ -17,7 +17,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(5);
         
         return view('product.list', compact('products'));
     }
@@ -121,6 +121,6 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('product.list', $id)->with('success', 'Ürün başarılıyla silindi!');
+        return redirect()->route('product.list')->with('success', 'Ürün başarılıyla silindi!');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(7);
+        
         return view('user.list', compact('users'));
     }
 
@@ -33,16 +35,16 @@ class UsersController extends Controller
         // Form verilerini doğrula
         $request->validate([
             'Username' => 'required|alpha_num|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'string|min:6',
         ]);
 
+        
         // Yeni kullanıcı oluştur ve veritabanına kaydet
         $user = User::create([
             'Username' => $request->Username,
+            'UserTitle' => $request->UserTitle,
             'password' => Hash::make($request->password),
-            'UserTitle' => $request->UserTitle
         ]);
-    
         $user->save();
     
         // Başarılı bir şekilde kaydedildi mesajı ve yönlendirme
@@ -88,7 +90,7 @@ class UsersController extends Controller
         }
 
         $user->Username = $request->Username;
-        
+
         if ($request->filled('UserTitle')) {
             $user->UserTitle = $request->UserTitle;
             }
@@ -99,7 +101,7 @@ class UsersController extends Controller
         $user->save();
 
         // Başarılı bir şekilde güncellendi mesajı ve yönlendirme
-        return redirect()->route('user.edit', $id)->with('success', 'Kullanıcı başarılıyla güncellendi!');
+        return redirect()->route('user.list')->with('success', 'Kullanıcı başarılıyla güncellendi!');
     }
 
     /**
@@ -110,6 +112,6 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('user.list', $id)->with('success', 'Kullanıcı başarılıyla silindi!');
+        return redirect()->route('user.list')->with('success', 'Kullanıcı başarılıyla silindi!');
     }
 }

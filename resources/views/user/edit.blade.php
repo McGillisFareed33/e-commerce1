@@ -1,11 +1,7 @@
 @extends('template')
 
 @section('content')
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
+
 <form method="post" action="{{ route('user.update', $user->id) }}" >
 
     @csrf
@@ -20,13 +16,12 @@
     
     <button type="submit">Güncelle</button>
 </form>
-@if ($errors->any())
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<div>
+    @if ($errors->any())
+    <div class="red-background">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
     </div>
 @endif
 @endsection

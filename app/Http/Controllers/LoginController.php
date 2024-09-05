@@ -18,7 +18,6 @@ class LoginController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        // Kullanıcı adı ve şifre alanlarını kontrol et
         if (empty($username)) {
             $errors[] = 'Kullanıcı adı gerekli.';
         }

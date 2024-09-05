@@ -35,7 +35,6 @@
                     
                     <div class="action-buttons">
                     <form method="get" action="{{route('user.edit', $user->id)}}">
-                        @csrf
                         <button class="edit-button" >Düzenle</button>
                     </form>
                     <form id="delete-form" method="get" action="{{route('user.delete', $user->id)}}" onsubmit="return confirm('Bu öğeyi silmek istediğinizden emin misiniz?')">
@@ -50,6 +49,7 @@
             @endforeach
         </tbody>
     </table>
+    {{$users->links()}}
 </div>
 @endsection
 @endsection
