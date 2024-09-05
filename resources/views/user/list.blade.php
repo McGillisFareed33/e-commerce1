@@ -32,7 +32,6 @@
                 <td>{{ $user->created_at }}</td>
                 <td>{{ $user->updated_at }}</td>
                 <td>
-                    
                     <div class="action-buttons">
                     <form method="get" action="{{route('user.edit', $user->id)}}">
                         <button class="edit-button" >Düzenle</button>
@@ -43,13 +42,11 @@
                         <button type="submit" class="delete-button" >Sil</button>
                     </form>
                     </div>
-                
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{$users->links()}}
 </div>
-@endsection
+{{ $users->links('pagination::bootstrap-4') }}@endsection
 @endsection

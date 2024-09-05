@@ -48,7 +48,7 @@
             <!-- Daha fazla satır ekleyebilirsiniz -->
         </tbody>
     </table>
-    {{$categories->links()}}
+    {{ $categories->links('pagination::bootstrap-4') }}
 </div>
 @endsection
 @endsection

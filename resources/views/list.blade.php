@@ -11,6 +11,29 @@ body {
     margin: 0;
     padding: 20px;
 }
+.pagination {
+    display: flex;            /* Sayfa numaralarını yan yana yerleştirir */
+    justify-content: center;   /* Ortalar */
+    padding: 0;
+    list-style: none;          /* Liste işaretlerini kaldırır */
+}
+
+.page-item {
+    margin: 0 5px;             /* Her sayfa numarası arasında boşluk bırakır */
+}
+
+.page-link {
+    padding: 8px 12px;         /* Sayfa numarası bağlantılarının boyutunu ayarlar */
+    border: 1px solid #ddd;    /* Dış kenar ekler */
+    text-decoration: none;     /* Alt çizgiyi kaldırır */
+    color: #007bff;            /* Metin rengini ayarlar */
+    border-radius: 4px;        /* Kenarlara yuvarlaklık verir */
+}
+
+.page-link:hover {
+    background-color: #f1f1f1; /* Üzerine gelindiğinde arka plan rengini değiştirir */
+}
+
 .alert-success {
             background-color: #d4edda; /* Açık yeşil arka plan */
             color: #155724; /* Koyu yeşil yazı rengi */

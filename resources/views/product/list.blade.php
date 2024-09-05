@@ -23,7 +23,6 @@
                 <th>Aksiyon</th>
             </tr>
         </thead>
-        <!-- foreach yapılacak -->
         <tbody>
             @foreach($products as $product)
             <tr>
@@ -59,7 +58,7 @@
             @endforeach
         </tbody>
     </table>
-    {{$products->links()}}
+    {{ $products->links('pagination::bootstrap-4') }}
 </div>
 @endsection
 @endsection
