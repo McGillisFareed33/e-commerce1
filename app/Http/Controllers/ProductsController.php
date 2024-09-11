@@ -47,7 +47,6 @@ class ProductsController extends Controller
             'ProductStatus.in' => 'ProductStatus alanı sadece "aktif" veya "pasif" değerlerini alabilir.',
         ]);
 
-        // Rastgele barkod oluştur
           $randomBarcode = Str::random(10); // 10 karakter uzunluğunda rastgele bir barkod
 
 

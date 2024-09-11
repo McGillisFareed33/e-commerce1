@@ -10,14 +10,13 @@ class StoreProductRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; // Yetki kontrolü yapmak isterseniz, burayı düzenleyin
+        return true;
     }
 
     public function rules()
     {
         $categoryId = $this->input('ProductCategoryId');
 
-        // Kategori durumunu kontrol et
         $category = Category::find($categoryId);
         if ($category && $category->Status === 'pasif') {
             return [

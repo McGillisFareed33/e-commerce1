@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('Username')->unique;
             $table->string('UserTitle');
             $table->string('password');
-            $table->string('role')->default('provisor');
+            $table->string('role')->default('provisor');//sadece gözetler (list erişimi)
             $table->timestamps();
             $table->softDeletes(); 
         });

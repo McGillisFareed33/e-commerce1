@@ -13,9 +13,8 @@ class Product extends Authenticatable
     use SoftDeletes;
     use Notifiable;
 
-    // Diğer model özellikleri ve ilişkiler
     protected $fillable = [
-        'ProductTitle', 'ProductCategoryId','Barcode','ProductStatus','Image'
+        'ProductTitle', 'ProductCategoryId','ProductStatus','Image'
     ];
 
     protected $hidden = [
@@ -27,7 +26,7 @@ class Product extends Authenticatable
     {
         parent::boot();
 
-        static::deleting(function ($category) {
+        static::deleting(function ($category) {//kategori silince product'taki kategori silinmesi
             Product::where('ProductCategoryId', $category->id)->update(['ProductCategoryId' => null]);
         });
     }

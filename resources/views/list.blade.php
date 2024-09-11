@@ -35,12 +35,12 @@ body {
 }
 
 .alert-success {
-            background-color: #d4edda; /* Açık yeşil arka plan */
-            color: #155724; /* Koyu yeşil yazı rengi */
-            padding: 10px; /* İç boşluk */
-            border-radius: 5px; /* Kenarları yuvarlatma */
-            display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
-            font-size: 16px; /* Yazı boyutu */
+    background-color: #d4edda; /* Açık yeşil arka plan */
+    color: #155724; /* Koyu yeşil yazı rengi */
+    padding: 10px; /* İç boşluk */
+    border-radius: 5px; /* Kenarları yuvarlatma */
+    display: inline-block; /* Mesajın yalnızca yazı genişliğini kaplaması için */
+    font-size: 16px; /* Yazı boyutu */
 }
 
 .table-container {

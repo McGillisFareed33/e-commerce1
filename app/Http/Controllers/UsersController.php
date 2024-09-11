@@ -39,7 +39,6 @@ class UsersController extends Controller
         ]);
 
         
-        // Yeni kullanıcı oluştur ve veritabanına kaydet
         $user = User::create([
             'Username' => $request->Username,
             'UserTitle' => $request->UserTitle,
@@ -80,7 +79,7 @@ class UsersController extends Controller
             'password' => 'nullable|min:6',
             'UserTitle' => 'nullable'
         ]);
-        // Kullanıcıyı ID'sine göre al
+        
         $user = User::findOrFail($id);
 
         if($user->Username !== $request->Username){
