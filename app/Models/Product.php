@@ -28,7 +28,6 @@ class Product extends Authenticatable
         parent::boot();
 
         static::deleting(function ($category) {
-            // Kategoriye bağlı ürünlerin kategori ID'sini null yap
             Product::where('ProductCategoryId', $category->id)->update(['ProductCategoryId' => null]);
         });
     }

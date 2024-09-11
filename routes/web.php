@@ -8,7 +8,6 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRole;
 
-
 Route::get('/login', [PagesController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.validate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

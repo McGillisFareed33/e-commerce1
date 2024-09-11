@@ -21,7 +21,6 @@
                 <th>Aksiyon</th>
             </tr>
         </thead>
-        <!-- foreach yapılacak -->
         <tbody>
             @foreach($categories as $category)
             <tr>
@@ -45,7 +44,6 @@
                     @endforeach
                 </td>
             </tr>
-            <!-- Daha fazla satır ekleyebilirsiniz -->
         </tbody>
     </table>
     {{ $categories->links('pagination::bootstrap-4') }}

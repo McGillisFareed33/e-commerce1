@@ -77,15 +77,15 @@ class UsersController extends Controller
     {
         // Form verilerini doğrula
         $request->validate([
-            'password' => 'nullable|string|min:6',
-            'UserTitle' => 'nullable|string'
+            'password' => 'nullable|min:6',
+            'UserTitle' => 'nullable'
         ]);
         // Kullanıcıyı ID'sine göre al
         $user = User::findOrFail($id);
 
         if($user->Username !== $request->Username){
         $request->validate([
-            'Username' => 'required|string|alpha_num|unique:users'
+            'Username' => 'required|alpha_num|unique:users'
         ]);
         }
 

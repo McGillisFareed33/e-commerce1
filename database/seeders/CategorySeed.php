@@ -12,7 +12,6 @@ class CategorySeed extends Seeder
 {
     public function run() :void
     {
-        // Örnek kategori verileri
         DB::table('categories')->insert([
             [
                 'CategoryTitle' => 'Elektronik',

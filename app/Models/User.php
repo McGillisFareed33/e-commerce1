@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Username', 'UserTitle', 'password',
+        'Username', 'UserTitle', 'password'
     ];
 
     /**
@@ -42,18 +42,5 @@ class User extends Authenticatable
     {
         
         parent::boot();
-        /*
-        static::creating(function ($user) {
-            // UserTitle'ı oluştur
-            // 'id' kullanıcı kaydedilmeden önce oluşturulamaz, dolayısıyla 'creating' olayında sadece 'Username' kullanılır
-            $user->UserTitle = $user->Username;
-        });
-
-        static::created(function ($user) {
-            // UserTitle'ı oluştur ve güncelle
-            $user->UserTitle = $user->Username . '-' . $user->id;
-            $user->save();
-        });
-        */
     }
 }

@@ -89,9 +89,9 @@
 
         .logout-button {
             position: fixed; /* Sabit konumda olmasını sağlar */
-            top: 10px; /* Üstten 10px */
+            top: 5px; /* Üstten 10px */
             right: 10px; /* Sağdan 10px */
-            background-color: blue; /* Butonun arka plan rengi */
+            background-color: red; /* Butonun arka plan rengi */
             color: white; /* Butonun yazı rengi */
             border: none; /* Kenarlık yok */
             padding: 10px 20px; /* İç boşluk */
@@ -152,7 +152,7 @@
 <body>
     <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button style= "position: absolute; top: 10px; right: 20px;" type="submit" class="btn btn-danger">Çıkış Yap</button>
+        <button  type="submit" class="logout-button">Çıkış Yap</button>
     </form>
     
     <div class="sidebar">

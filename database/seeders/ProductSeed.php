@@ -13,7 +13,6 @@ class ProductSeed extends Seeder
 {
     public function run(): void
     {
-        // Örnek veri ekleme
         DB::table('products')->insert([
             [
                 'ProductTitle' => 'Bilgisayar',

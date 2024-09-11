@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('role')->default('provisor');
             $table->timestamps();
             $table->softDeletes(); 
-            
         });
     }
 
